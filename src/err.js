@@ -1,4 +1,4 @@
-export function displayingErr(result){
+export function generateResultText(result){
   let resultText = '';
   if (result === 'invalid') {
     resultText = 'Invalid input. You must enter valid numbers.';

@@ -1,21 +1,19 @@
-import { gettingData } from './src/parser.js';
-import { validatingData } from './src/util/validation.js';
-import { displayingErr } from "./src/err.js";
+import { extractEnteredNumberValues } from './src/parser.js';
+import { generateResultText } from "./src/err.js";
 import { displayingOutput } from "./src/data.js"
+import { calculateResult } from "./src/math.js";
 
 const form = document.querySelector('form');
-const output = document.getElementById('result');
-
-
-
 
 function formSubmitHandler(event) {
   event.preventDefault();
 
-  const numberInputs = gettingData(form);
-  let result = validatingData(numberInputs);
-  const resultText = displayingErr(result)
-  displayingOutput(output, resultText)
+  const numberValues = extractEnteredNumberValues(form);
+  const result = calculateResult(numberValues);
+
+  const resultText = generateResultText(result)
+  const shownData = displayingOutput(resultText)
+  return shownData
 }
 
 form.addEventListener('submit', formSubmitHandler);
